@@ -3,13 +3,14 @@ Descripttion:
 version: 
 Author: tylerytr
 Date: 2023-09-19 14:33:38
-LastEditTime: 2023-09-19 16:10:22
+LastEditTime: 2023-09-19 17:04:44
 LastEditors: tylerytr
 FilePath: /tyleryin/feishu_bot/bagu_bot/src/Interview_experience/C++基架后端/solution/split_files.py
 Email:601576661@qq.com
 Copyright (c) 2023 by tyleryin, All Rights Reserved. 
 '''
 import os
+import re
 def create_files_from_headings(markdown_file):
     with open(markdown_file, "r") as f:
         lines = f.readlines()
@@ -50,6 +51,9 @@ def create_files_from_headings(markdown_file):
                     count_num=count_num+1
                     current_file_name=os.path.join(real_path,str(count_num)+".md")
                     #print(current_file_name)
+                    pattern=r'\d+\.'
+                    line=re.sub(pattern,"",line)
+                    line=line.lstrip()
                     current_file = open(current_file_name, 'w')
                     current_file.write(line)
                     current_file.close()
